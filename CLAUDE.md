@@ -1,290 +1,290 @@
 # CLAUDE.md
 
-**Documentation for AI Assistants working on claude-code_playground**
+**claude-code_playgroundで作業するAIアシスタントのためのドキュメント**
 
-Last Updated: 2026-01-24
-
----
-
-## Repository Overview
-
-**Repository:** yuyutyanu/claude-code_playground
-**Purpose:** Development playground and experimentation sandbox
-**Current State:** Early stage / minimal setup
-**Primary Goal:** Enable flexible development experimentation (including mobile-friendly workflows)
-
-This is a sandbox repository designed for experimental development work. The repository name and README suggest a focus on convenient, accessible development workflows.
+最終更新: 2026-01-24
 
 ---
 
-## Current Repository Structure
+## リポジトリ概要
+
+**リポジトリ:** yuyutyanu/claude-code_playground
+**目的:** 開発実験用のプレイグラウンド・サンドボックス
+**現在の状態:** 初期段階 / 最小限のセットアップ
+**主な目標:** 柔軟な開発実験を可能にする（モバイルフレンドリーなワークフローを含む）
+
+これは実験的な開発作業のために設計されたサンドボックスリポジトリです。リポジトリ名とREADMEは、便利でアクセスしやすい開発ワークフローに焦点を当てています。
+
+---
+
+## 現在のリポジトリ構造
 
 ```
 claude-code_playground/
-├── .git/                 # Git repository data
-├── README.md            # Project introduction (Japanese)
-└── CLAUDE.md           # This file - AI assistant documentation
+├── .git/                 # Gitリポジトリデータ
+├── README.md            # プロジェクト紹介（日本語）
+└── CLAUDE.md           # このファイル - AIアシスタント用ドキュメント
 ```
 
-### Key Files
+### 主要ファイル
 
-- **README.md**: Brief project description in Japanese ("寝ながらスマホぽちぽちで開発したい所存" - expressing desire to develop conveniently via mobile)
-- **CLAUDE.md**: This documentation for AI assistants
+- **README.md**: 日本語でのプロジェクト概要（「寝ながらスマホぽちぽちで開発したい所存」）
+- **CLAUDE.md**: AIアシスタント向けのこのドキュメント
 
 ---
 
-## Development Workflow
+## 開発ワークフロー
 
-### Git Branching Strategy
+### Gitブランチ戦略
 
-**Branch Naming Convention:**
-- All feature branches MUST follow the pattern: `claude/<description>-<session-id>`
-- Example: `claude/add-feature-abc123`
-- Current working branch: `claude/add-claude-documentation-m0esa`
+**ブランチ命名規則:**
+- すべてのフィーチャーブランチは `claude/<説明>-<セッションID>` パターンに従う必要があります
+- 例: `claude/add-feature-abc123`
+- 現在の作業ブランチ: `claude/add-claude-documentation-m0esa`
 
-**Critical Git Rules:**
-1. Always develop on designated feature branches (never directly on main)
-2. Branch names must start with `claude/` and end with a matching session ID
-3. Pushing to incorrectly named branches will fail with 403 error
+**重要なGitルール:**
+1. 必ず指定されたフィーチャーブランチで開発する（mainブランチに直接変更しない）
+2. ブランチ名は `claude/` で始まり、セッションIDで終わる必要がある
+3. 正しくない名前のブランチへのプッシュは403エラーで失敗する
 
-### Git Operations Best Practices
+### Gitオペレーションのベストプラクティス
 
-**Pushing Changes:**
+**変更のプッシュ:**
 ```bash
 git push -u origin claude/<branch-name>
 ```
-- Always use `-u` flag for initial push
-- Retry up to 4 times with exponential backoff (2s, 4s, 8s, 16s) on network errors
-- Never force push to main/master without explicit permission
+- 初回プッシュ時は必ず `-u` フラグを使用
+- ネットワークエラー時は指数バックオフ（2秒、4秒、8秒、16秒）で最大4回リトライ
+- 明示的な許可なしにmain/masterへforce pushしない
 
-**Fetching/Pulling:**
+**フェッチ/プル:**
 ```bash
 git fetch origin <branch-name>
 git pull origin <branch-name>
 ```
-- Prefer fetching specific branches
-- Apply same retry logic for network failures
+- 特定のブランチをフェッチすることを推奨
+- ネットワーク障害時も同じリトライロジックを適用
 
-**Commit Messages:**
-- Use clear, descriptive commit messages
-- Focus on "why" rather than "what"
-- Follow conventional commit format when possible:
-  - `feat:` for new features
-  - `fix:` for bug fixes
-  - `docs:` for documentation
-  - `refactor:` for code refactoring
-  - `test:` for tests
-  - `chore:` for maintenance
-
----
-
-## Coding Conventions
-
-### General Principles
-
-Since this is an early-stage playground, establish conventions as the codebase grows:
-
-1. **Simplicity First**: Avoid over-engineering
-2. **Minimal Abstractions**: Don't create abstractions for one-time operations
-3. **Direct Changes**: No backwards-compatibility hacks unless explicitly needed
-4. **Clean Deletions**: Remove unused code completely (no commented-out code)
-5. **Security Conscious**: Watch for vulnerabilities (XSS, SQL injection, command injection, etc.)
-
-### File Organization
-
-As the project grows, consider organizing by:
-- **Type** (components/, utils/, services/)
-- **Feature** (auth/, api/, ui/)
-- **Domain** (user/, product/, order/)
-
-Choose the pattern that best fits the project's needs.
-
-### Documentation
-
-- Keep README.md updated with project overview
-- Document complex logic inline only when non-obvious
-- Maintain this CLAUDE.md as the codebase evolves
-- Add API documentation when external interfaces are created
+**コミットメッセージ:**
+- 明確で説明的なコミットメッセージを使用
+- 「何を」より「なぜ」に焦点を当てる
+- 可能な限りConventional Commitフォーマットに従う:
+  - `feat:` 新機能
+  - `fix:` バグ修正
+  - `docs:` ドキュメント
+  - `refactor:` リファクタリング
+  - `test:` テスト
+  - `chore:` メンテナンス
 
 ---
 
-## Working with This Repository
+## コーディング規約
 
-### For AI Assistants
+### 基本原則
 
-**Before Making Changes:**
-1. ✓ Read existing files before proposing modifications
-2. ✓ Understand the current structure and patterns
-3. ✓ Check git status and current branch
-4. ✓ Use TodoWrite tool for multi-step tasks
+初期段階のプレイグラウンドなので、コードベースの成長に合わせて規約を確立していきます:
 
-**When Implementing Features:**
-1. Keep solutions simple and focused
-2. Only make changes that are directly requested
-3. Don't add unnecessary features or refactoring
-4. Validate at system boundaries (user input, external APIs)
-5. Avoid premature optimization
+1. **シンプルさ優先**: 過度な設計を避ける
+2. **最小限の抽象化**: 一度きりの操作のために抽象化を作らない
+3. **直接的な変更**: 明示的に必要でない限り後方互換性のハックを入れない
+4. **クリーンな削除**: 未使用のコードは完全に削除（コメントアウトしない）
+5. **セキュリティ意識**: 脆弱性（XSS、SQLインジェクション、コマンドインジェクションなど）に注意
 
-**Code Review Checklist:**
-- [ ] Security: No injection vulnerabilities
-- [ ] Simplicity: Minimal necessary complexity
-- [ ] Testing: Works as intended
-- [ ] Documentation: Complex logic explained
-- [ ] Cleanup: No unused code or comments
+### ファイル構成
 
-**Task Management:**
-- Use TodoWrite tool for complex multi-step tasks
-- Mark tasks in_progress when starting
-- Mark completed immediately upon finishing
-- Keep only one task in_progress at a time
+プロジェクトの成長に応じて、以下のような構成を検討:
+- **タイプ別** (components/, utils/, services/)
+- **機能別** (auth/, api/, ui/)
+- **ドメイン別** (user/, product/, order/)
 
-### Repository Evolution
+プロジェクトのニーズに最も適したパターンを選択してください。
 
-As this repository grows, update this document with:
-- New directory structure patterns
-- Technology stack decisions
-- Build and deployment processes
-- Testing conventions
-- Code style guides
-- API documentation links
+### ドキュメント
+
+- README.mdをプロジェクト概要で最新に保つ
+- 複雑なロジックは自明でない場合のみインラインで文書化
+- コードベースの成長に合わせてこのCLAUDE.mdを維持
+- 外部インターフェースが作成されたらAPIドキュメントを追加
 
 ---
 
-## Technology Stack
+## このリポジトリでの作業
 
-**Current:** Not yet established
+### AIアシスタント向け
 
-**To be documented as the project grows:**
-- Programming languages
-- Frameworks and libraries
-- Build tools
-- Testing frameworks
-- Deployment targets
+**変更を加える前に:**
+1. ✓ 変更を提案する前に既存ファイルを読む
+2. ✓ 現在の構造とパターンを理解する
+3. ✓ git statusと現在のブランチを確認
+4. ✓ 複数ステップのタスクにはTodoWriteツールを使用
+
+**機能実装時:**
+1. シンプルで焦点を絞ったソリューションを保つ
+2. 直接要求された変更のみを行う
+3. 不必要な機能やリファクタリングを追加しない
+4. システム境界（ユーザー入力、外部API）でバリデーション
+5. 早期最適化を避ける
+
+**コードレビューチェックリスト:**
+- [ ] セキュリティ: インジェクション脆弱性がない
+- [ ] シンプルさ: 必要最小限の複雑さ
+- [ ] テスト: 意図通りに動作
+- [ ] ドキュメント: 複雑なロジックを説明
+- [ ] クリーンアップ: 未使用のコードやコメントがない
+
+**タスク管理:**
+- 複雑な複数ステップのタスクにはTodoWriteツールを使用
+- 開始時にタスクをin_progressにマーク
+- 完了したら即座にcompletedにマーク
+- 常に1つのタスクのみをin_progressに保つ
+
+### リポジトリの進化
+
+リポジトリの成長に応じて、このドキュメントを以下で更新してください:
+- 新しいディレクトリ構造パターン
+- 技術スタックの決定
+- ビルドとデプロイプロセス
+- テスト規約
+- コードスタイルガイド
+- APIドキュメントへのリンク
 
 ---
 
-## Development Environment
+## 技術スタック
 
-### Prerequisites
+**現在:** 未確立
 
-To be documented as project requirements emerge.
+**プロジェクトの成長に応じて文書化予定:**
+- プログラミング言語
+- フレームワークとライブラリ
+- ビルドツール
+- テストフレームワーク
+- デプロイ先
 
-### Setup
+---
+
+## 開発環境
+
+### 前提条件
+
+プロジェクト要件が明らかになり次第、文書化予定。
+
+### セットアップ
 
 ```bash
-# Clone the repository
+# リポジトリのクローン
 git clone <repository-url>
 cd claude-code_playground
 
-# Create feature branch
+# フィーチャーブランチの作成
 git checkout -b claude/your-feature-$(date +%s)
 
-# (Additional setup steps to be added as needed)
+# （必要に応じて追加のセットアップ手順を追加）
 ```
 
 ---
 
-## Testing
+## テスト
 
-Testing strategy to be established as codebase grows.
+テスト戦略はコードベースの成長に応じて確立予定。
 
-Recommended approach:
-- Unit tests for business logic
-- Integration tests for API endpoints
-- E2E tests for critical user flows
-
----
-
-## Common Tasks
-
-### Adding New Features
-
-1. Create feature branch: `git checkout -b claude/feature-name-<session-id>`
-2. Implement changes with clear commits
-3. Test thoroughly
-4. Push: `git push -u origin claude/feature-name-<session-id>`
-5. Create pull request if needed
-
-### Updating Dependencies
-
-To be documented when package managers are added.
-
-### Running the Project
-
-To be documented when project structure is established.
+推奨アプローチ:
+- ビジネスロジックのユニットテスト
+- APIエンドポイントの統合テスト
+- 重要なユーザーフローのE2Eテスト
 
 ---
 
-## Troubleshooting
+## 一般的なタスク
 
-### Common Issues
+### 新機能の追加
 
-**403 Error on Push:**
-- Check branch name follows `claude/<description>-<session-id>` pattern
-- Verify you're not pushing to protected branches
+1. フィーチャーブランチの作成: `git checkout -b claude/feature-name-<session-id>`
+2. 明確なコミットで変更を実装
+3. 徹底的にテスト
+4. プッシュ: `git push -u origin claude/feature-name-<session-id>`
+5. 必要に応じてプルリクエストを作成
 
-**Network Errors:**
-- Retry with exponential backoff (2s, 4s, 8s, 16s)
-- Check connectivity and proxy settings
+### 依存関係の更新
 
----
+パッケージマネージャーが追加されたら文書化予定。
 
-## Notes for AI Assistants
+### プロジェクトの実行
 
-### Repository Context
-- **Type:** Playground/Experimental
-- **Maturity:** Early stage
-- **Flexibility:** High - conventions are being established
-- **Language Context:** Japanese developer (consider bilingual documentation)
-
-### Communication Style
-- Be concise and direct
-- Avoid over-the-top validation or excessive praise
-- Focus on technical accuracy
-- Use objective guidance over agreement
-
-### Special Considerations
-1. This is a playground - balance structure with experimentation freedom
-2. Mobile development workflow may be a consideration
-3. Incremental improvements preferred over large refactors
-4. Document decisions as patterns emerge
-
-### When in Doubt
-- Ask for clarification rather than making assumptions
-- Prefer simpler solutions
-- Keep changes minimal and focused
-- Update this documentation as you learn more about the project
+プロジェクト構造が確立したら文書化予定。
 
 ---
 
-## Resources
+## トラブルシューティング
 
-### Internal Documentation
-- README.md - Project overview
+### よくある問題
 
-### External Resources
-- Git documentation: https://git-scm.com/doc
-- GitHub guides: https://guides.github.com
+**プッシュ時の403エラー:**
+- ブランチ名が `claude/<説明>-<セッションID>` パターンに従っているか確認
+- 保護されたブランチにプッシュしていないか確認
 
----
-
-## Version History
-
-- **2026-01-24**: Initial CLAUDE.md creation
-  - Documented minimal repository structure
-  - Established git workflow conventions
-  - Created framework for future documentation
+**ネットワークエラー:**
+- 指数バックオフ（2秒、4秒、8秒、16秒）でリトライ
+- 接続とプロキシ設定を確認
 
 ---
 
-## Contributing
+## AIアシスタントへの注意事項
 
-As this is a playground repository:
-1. Follow the git branching conventions
-2. Keep changes focused and simple
-3. Update documentation as patterns emerge
-4. Prioritize working code over perfect code
+### リポジトリコンテキスト
+- **タイプ:** プレイグラウンド/実験用
+- **成熟度:** 初期段階
+- **柔軟性:** 高 - 規約を確立中
+- **言語コンテキスト:** 日本語開発者（日本語でのコミュニケーションを推奨）
+
+### コミュニケーションスタイル
+- 簡潔で直接的に
+- 過度な褒め言葉や検証を避ける
+- 技術的正確性に焦点を当てる
+- 同意よりも客観的なガイダンスを優先
+
+### 特別な考慮事項
+1. これはプレイグラウンド - 構造と実験の自由のバランスを取る
+2. モバイル開発ワークフローが考慮事項になる可能性
+3. 大規模なリファクタリングよりも段階的な改善を優先
+4. パターンが出現したら決定を文書化
+
+### 不明な場合
+- 推測ではなく明確化を求める
+- よりシンプルなソリューションを選ぶ
+- 変更を最小限に焦点を絞って保つ
+- プロジェクトについて学んだらこのドキュメントを更新
 
 ---
 
-**Remember:** This is a living document. Update it as the repository evolves and new patterns emerge.
+## リソース
+
+### 内部ドキュメント
+- README.md - プロジェクト概要
+
+### 外部リソース
+- Git ドキュメント: https://git-scm.com/doc
+- GitHub ガイド: https://guides.github.com
+
+---
+
+## バージョン履歴
+
+- **2026-01-24**: CLAUDE.md初版作成
+  - 最小限のリポジトリ構造を文書化
+  - Gitワークフロー規約を確立
+  - 今後のドキュメント用フレームワークを作成
+
+---
+
+## コントリビューション
+
+このプレイグラウンドリポジトリでは:
+1. Gitブランチ規約に従う
+2. 変更を焦点を絞ってシンプルに保つ
+3. パターンが出現したらドキュメントを更新
+4. 完璧なコードより動作するコードを優先
+
+---
+
+**注意:** これは生きたドキュメントです。リポジトリの進化と新しいパターンの出現に応じて更新してください。
