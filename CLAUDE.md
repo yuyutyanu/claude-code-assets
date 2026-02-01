@@ -41,7 +41,8 @@ claude-code_playground/
 │   ├── postgres-patterns/         # PostgreSQLパターン
 │   ├── prisma-patterns/           # Prisma ORMパターン
 │   ├── state-management/          # React状態管理
-│   └── testing-patterns/          # テスト設計パターン
+│   ├── testing-patterns/          # テスト設計パターン
+│   └── jest/                      # Jestテストスキル
 ├── .git/                # Gitリポジトリデータ
 ├── README.md            # プロジェクト紹介（日本語）
 └── CLAUDE.md            # このファイル - AIアシスタント用メインドキュメント
@@ -381,6 +382,7 @@ npm run test:coverage
   - prisma-patterns/ - Prisma ORMパターン
   - state-management/ - React状態管理
   - testing-patterns/ - テスト設計パターン
+  - jest/ - Jestテストスキル
 
 ### 外部リソース
 - Git ドキュメント: https://git-scm.com/doc
